@@ -1,7 +1,7 @@
 <template>
   <div :id="id ? id : ''" class="vue-form-wizard" :class="[stepSize, {vertical: isVertical}]" @keyup.right="focusNextTab"
        @keyup.left="focusPrevTab">
-    <div class="wizard-header" v-if="$slots['title']">
+    <div class="wizard-header" v-if="$slots['title'] !== undefined">
       <slot name="title">
         <h4 class="wizard-title">{{title}}</h4>
         <p class="category">{{subtitle}}</p>
@@ -461,7 +461,8 @@
       }
     },
     mounted () {
-      this.initializeTabs()
+      this.initializeTabs();
+      console.log(this.$slots.title)
     },
     watch: {
       '$route.path' (newRoute) {
